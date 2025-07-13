@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Restaurant Management System</h1>
+
+        <!-- Restaurants Section -->
+        <section class="entity-section">
+            <h2>Restaurants</h2>
+            
+            <!-- Add Restaurant Form -->
+            <div class="form-container">
+                <h3>Add New Restaurant</h3>
+                <form id="add-restaurant-form">
+                    <input type="text" id="new-restaurant-name" placeholder="Restaurant Name" required>
+                    <input type="text" id="new-restaurant-location" placeholder="Location" required>
+                    <input type="text" id="new-restaurant-cuisine" placeholder="Cuisine" required>
+                    <button type="submit">Add Restaurant</button>
+                </form>
+            </div>
+
+            <!-- Update Restaurant Form -->
+            <div class="form-container">
+                <h3>Update Restaurant</h3>
+                <form id="update-restaurant-form">
+                    <input type="number" id="update-restaurant-id" placeholder="Restaurant ID" required>
+                    <input type="text" id="update-restaurant-name" placeholder="New Name">
+                    <input type="text" id="update-restaurant-location" placeholder="New Location">
+                    <input type="text" id="update-restaurant-cuisine" placeholder="New Cuisine">
+                    <button type="submit">Update Restaurant</button>
+                </form>
+            </div>
+
+            <!-- Display/Search Section -->
+            <div class="display-section">
+                <button onclick="displayAllRestaurants()">Display All</button>
+                <div class="search-container">
+                    <input type="number" id="restaurant-id" placeholder="Enter Restaurant ID">
+                    <button onclick="getRestaurantById()">Search</button>
+                </div>
+                <div class="delete-container">
+                    <input type="number" id="delete-restaurant-id" placeholder="Enter Restaurant ID">
+                    <button onclick="deleteRestaurant()" class="delete-btn">Delete Restaurant</button>
+                </div>
+                <table id="restaurant-details-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Restaurant ID</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Cuisine</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Menu Items Section -->
+        <section class="entity-section">
+            <h2>Menu Items</h2>
+            
+            <!-- Add Menu Item Form -->
+            <div class="form-container">
+                <h3>Add New Menu Item</h3>
+                <form id="add-menu-item-form">
+                    <input type="text" id="new-item-name" placeholder="Item Name" required>
+                    <input type="number" id="new-item-price" placeholder="Price" step="0.01" required>
+                    <input type="number" id="new-item-restaurant-id" placeholder="Restaurant ID" required>
+                    <button type="submit">Add Menu Item</button>
+                </form>
+            </div>
+
+            <!-- Update Menu Item Form -->
+            <div class="form-container">
+                <h3>Update Menu Item</h3>
+                <form id="update-menu-item-form">
+                    <input type="number" id="update-item-id" placeholder="Item ID" required>
+                    <input type="text" id="update-item-name" placeholder="New Name">
+                    <input type="number" id="update-item-price" placeholder="New Price" step="0.01">
+                    <input type="number" id="update-item-restaurant-id" placeholder="Restaurant ID">
+                    <button type="submit">Update Menu Item</button>
+                </form>
+            </div>
+
+            <!-- Display/Search Section -->
+            <div class="display-section">
+                <button onclick="displayAllMenuItems()">Display All</button>
+                <div class="search-container">
+                    <input type="number" id="menu-restaurant-id" placeholder="Enter Restaurant ID">
+                    <button onclick="getMenuItemsByRestaurant()">Search</button>
+                </div>
+                <div class="delete-container">
+                    <input type="number" id="delete-menu-item-id" placeholder="Enter Item ID">
+                    <button onclick="deleteMenuItem()" class="delete-btn">Delete Menu Item</button>
+                </div>
+                <table id="menu-items-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th>Restaurant ID</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Customers Section -->
+        <section class="entity-section">
+            <h2>Customers</h2>
+            
+            <!-- Add Customer Form -->
+            <div class="form-container">
+                <h3>Add New Customer</h3>
+                <form id="add-customer-form">
+                    <input type="text" id="new-customer-name" placeholder="Customer Name" required>
+                    <input type="number" id="new-customer-loyalty-id" placeholder="Loyalty Card ID">
+                    <input type="text" id="new-customer-contact" placeholder="Contact Info" required>
+                    <button type="submit">Add Customer</button>
+                </form>
+            </div>
+
+            <!-- Update Customer Form -->
+            <div class="form-container">
+                <h3>Update Customer</h3>
+                <form id="update-customer-form">
+                    <input type="number" id="update-customer-id" placeholder="Customer ID" required>
+                    <input type="text" id="update-customer-name" placeholder="New Name">
+                    <input type="number" id="update-customer-loyalty-id" placeholder="New Loyalty Card ID">
+                    <input type="text" id="update-customer-contact" placeholder="New Contact Info">
+                    <button type="submit">Update Customer</button>
+                </form>
+            </div>
+
+            <!-- Display/Search Section -->
+            <div class="display-section">
+                <button onclick="displayAllCustomers()">Display All</button>
+                <div class="search-container">
+                    <input type="number" id="customer-id" placeholder="Enter Customer ID">
+                    <button onclick="getCustomerById()">Search</button>
+                </div>
+                <div class="delete-container">
+                    <input type="number" id="delete-customer-id" placeholder="Enter Customer ID">
+                    <button onclick="deleteCustomer()" class="delete-btn">Delete Customer</button>
+                </div>
+                <table id="customer-details-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Name</th>
+                            <th>Loyalty Card ID</th>
+                            <th>Contact Info</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Loyalty Cards Section -->
+        <section class="entity-section">
+            <h2>Loyalty Cards</h2>
+            
+            <!-- Add Loyalty Card Form -->
+            <div class="form-container">
+                <h3>Add New Loyalty Card</h3>
+                <form id="add-loyalty-card-form">
+                    <input type="number" id="new-loyalty-points" placeholder="Points" required>
+                    <input type="number" id="new-loyalty-discount" placeholder="Discount Rate" step="0.01" required>
+                    <input type="number" id="new-loyalty-customer-id" placeholder="Customer ID" required>
+                    <button type="submit">Add Loyalty Card</button>
+                </form>
+            </div>
+
+            <!-- Update Loyalty Card Form -->
+            <div class="form-container">
+                <h3>Update Loyalty Card</h3>
+                <form id="update-loyalty-card-form">
+                    <input type="number" id="update-loyalty-id" placeholder="Loyalty Card ID" required>
+                    <input type="number" id="update-loyalty-points" placeholder="New Points">
+                    <input type="number" id="update-loyalty-discount" placeholder="New Discount Rate" step="0.01">
+                    <input type="number" id="update-loyalty-customer-id" placeholder="Customer ID" required>
+                    <button type="submit">Update Loyalty Card</button>
+                </form>
+            </div>
+
+            <!-- Display/Search Section -->
+            <div class="display-section">
+                <button onclick="displayAllLoyaltyCards()">Display All</button>
+                <div class="search-container">
+                    <input type="number" id="loyalty-customer-id" placeholder="Enter Customer ID">
+                    <button onclick="getLoyaltyCardByCustomerId()">Search</button>
+                </div>
+                <div class="delete-container">
+                    <input type="number" id="delete-loyalty-card-id" placeholder="Enter Loyalty Card ID">
+                    <button onclick="deleteLoyaltyCard()" class="delete-btn">Delete Loyalty Card</button>
+                </div>
+                <table id="loyalty-card-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Loyalty Card ID</th>
+                            <th>Points</th>
+                            <th>Discount Rate</th>
+                            <th>Customer ID</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Orders Section -->
+        <section class="entity-section">
+            <h2>Orders</h2>
+            
+            <!-- Add Order Form -->
+            <div class="form-container">
+                <h3>Add New Order</h3>
+                <form id="add-order-form">
+                    <input type="number" id="new-order-customer-id" placeholder="Customer ID" required>
+                    <input type="number" id="new-order-total" placeholder="Total Amount" step="0.01" required>
+                    <input type="number" id="new-order-tax" placeholder="Tax" step="0.01" required>
+                    <input type="number" id="new-order-tip" placeholder="Tip" step="0.01" required>
+                    <button type="submit">Add Order</button>
+                </form>
+            </div>
+
+            <!-- Update Order Form -->
+            <div class="form-container">
+                <h3>Update Order</h3>
+                <form id="update-order-form">
+                    <input type="number" id="update-order-id" placeholder="Order ID" required>
+                    <input type="number" id="update-order-customer-id" placeholder="Customer ID" required>
+                    <input type="number" id="update-order-total" placeholder="New Total Amount" step="0.01">
+                    <input type="number" id="update-order-tax" placeholder="New Tax" step="0.01">
+                    <input type="number" id="update-order-tip" placeholder="New Tip" step="0.01">
+                    <button type="submit">Update Order</button>
+                </form>
+            </div>
+
+            <!-- Display/Search Section -->
+            <div class="display-section">
+                <button onclick="displayAllOrders()">Display All</button>
+                <div class="search-container">
+                    <input type="number" id="order-customer-id" placeholder="Enter Customer ID">
+                    <button onclick="getOrdersByCustomer()">Search</button>
+                </div>
+                <div class="delete-container">
+                    <input type="number" id="delete-order-id" placeholder="Enter Order ID">
+                    <button onclick="deleteOrder()" class="delete-btn">Delete Order</button>
+                </div>
+                <table id="orders-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer ID</th>
+                            <th>Total Amount</th>
+                            <th>Tax</th>
+                            <th>Tip</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Order Items Section -->
+        <section class="entity-section">
+            <h2>Order Items</h2>
+            
+            <!-- Add Order Item Form -->
+            <div class="form-container">
+                <h3>Add New Order Item</h3>
+                <form id="add-order-item-form">
+                    <input type="number" id="new-order-item-order-id" placeholder="Order ID" required>
+                    <input type="number" id="new-order-item-item-id" placeholder="Item ID" required>
+                    <input type="number" id="new-order-item-quantity" placeholder="Quantity" required>
+                    <button type="submit">Add Order Item</button>
+                </form>
+            </div>
+
+            <!-- Update Order Item Form -->
+            <div class="form-container">
+                <h3>Update Order Item</h3>
+                <form id="update-order-item-form">
+                    <input type="number" id="update-order-item-id" placeholder="Order Item ID" required>
+                    <input type="number" id="update-order-item-order-id" placeholder="Order ID">
+                    <input type="number" id="update-order-item-item-id" placeholder="Item ID" >
+                    <input type="number" id="update-order-item-quantity" placeholder="New Quantity">
+                    <button type="submit">Update Order Item</button>
+                </form>
+            </div>
+
+            <!-- Display/Search Section -->
+            <div class="display-section">
+                <button onclick="displayAllOrderItems()">Display All</button>
+                <div class="search-container">
+                    <input type="number" id="order-items-id" placeholder="Enter Order ID">
+                    <button onclick="getOrderItemsByOrderId()">Search</button>
+                </div>
+                <div class="delete-container">
+                    <input type="number" id="delete-order-item-id" placeholder="Enter Order Item ID">
+                    <button onclick="deleteOrderItem()" class="delete-btn">Delete Order Item</button>
+                </div>
+                <table id="order-items-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Order Item ID</th>
+                            <th>Order ID</th>
+                            <th>Item ID</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Payments Section -->
+        <section class="entity-section">
+            <h2>Payments</h2>
+            
+            <!-- Add Payment Form -->
+            <div class="form-container">
+                <h3>Add New Payment</h3>
+                <form id="add-payment-form">
+                    <input type="number" id="new-payment-order-id" placeholder="Order ID" required>
+                    <input type="text" id="new-payment-type" placeholder="Payment Type" required>
+                    <input type="number" id="new-payment-amount" placeholder="Payment Amount" step="0.01" required>
+                    <button type="submit">Add Payment</button>
+                </form>
+            </div>
+
+            <!-- Update Payment Form (continuing) -->
+            <div class="form-container">
+                <h3>Update Payment</h3>
+                <form id="update-payment-form">
+                    <input type="number" id="update-payment-id" placeholder="Payment ID" required>
+                    <input type="number" id="update-payment-order-id" placeholder="Order ID" required>
+                    <input type="text" id="update-payment-type" placeholder="New Payment Type">
+                    <input type="number" id="update-payment-amount" placeholder="New Payment Amount" step="0.01">
+                    <button type="submit">Update Payment</button>
+        </form>
+    </div>
+
+    <!-- Display/Search Section -->
+    <div class="display-section">
+        <button onclick="displayAllPayments()">Display All</button>
+        <div class="search-container">
+            <input type="number" id="payment-order-id" placeholder="Enter Order ID">
+            <button onclick="getPaymentByOrderId()">Search</button>
+        </div>
+        <div class="delete-container">
+            <input type="number" id="delete-payment-id" placeholder="Enter Payment ID">
+            <button onclick="deletePayment()" class="delete-btn">Delete Payment</button>
+        </div>
+        <table id="payment-details-table" class="table">
+            <thead>
+                <tr>
+                    <th>Payment ID</th>
+                    <th>Order ID</th>
+                    <th>Payment Type</th>
+                    <th>Payment Amount</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Business Reports Section -->
+<section class="reports-section">
+    <h2>Business Reports</h2>
+
+    <!-- Top Restaurants Report -->
+    <div class="report-card">
+        <h3>Top Performing Restaurants</h3>
+        <p>Ranked by total orders and revenue, showing comprehensive performance metrics</p>
+        <button onclick="displayTopRestaurants()">Generate Report</button>
+        <table id="top-restaurants-table" class="table">
+            <thead>
+                <tr>
+                    <th>Restaurant Name</th>
+                    <th>Cuisine Type</th>
+                    <th>Total Orders</th>
+                    <th>Total Revenue ($)</th>
+                    <th>Avg Order Value ($)</th>
+                    <th>Total Tips ($)</th>
+                    <th>Unique Customers</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Customer Loyalty Report -->
+    <div class="report-card">
+        <h3>Customer Loyalty Analysis</h3>
+        <button onclick="displayCustomerLoyalty()">Generate Report</button>
+        <table id="customer-loyalty-table" class="table">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Loyalty Points</th>
+                    <th>Total Orders</th>
+                    <th>Total Spent</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Popular Menu Items Report -->
+    <div class="report-card">
+        <h3>Popular Menu Items Analysis</h3>
+        <p>Ranked by quantity ordered and total revenue, showing detailed item performance</p>
+        <button onclick="displayPopularItems()">Generate Report</button>
+        <table id="popular-items-table" class="table">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Restaurant</th>
+                    <th>Cuisine Type</th>
+                    <th>Number of Orders</th>
+                    <th>Total Quantity</th>
+                    <th>Unit Price ($)</th>
+                    <th>Total Revenue ($)</th>
+                    <th>Unique Customers</th>
+                    <th>Avg Qty/Order</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Payment Analysis Report -->
+    <div class="report-card">
+        <h3>Payment Method Analysis</h3>
+        <button onclick="displayPaymentAnalysis()">Generate Report</button>
+        <table id="payment-analysis-table" class="table">
+            <thead>
+                <tr>
+                    <th>Payment Type</th>
+                    <th>Number of Transactions</th>
+                    <th>Total Amount</th>
+                    <th>Average Amount</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+</div>
+<!-- <script src="https://unpkg.com/react@17/umd/react.development.js"></script> -->
+<!-- <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script> -->
+<!-- <script src="bundle.js"></script> -->
+<script src="main.js"></script>
+</body>
+</html>
