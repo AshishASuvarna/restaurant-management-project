@@ -14,9 +14,8 @@ Webpack-based build setup
 
 📸 Screenshot
 
-You can include a screenshot here by uploading an image and adding the following:
 
-![App Screenshot](https://user-images.githubusercontent.com/your-image-link.png)
+![App Screenshot](https://github.com/user-attachments/assets/80a088ee-51ba-4939-97d3-969d871e790e)
 
 🛠️ Technologies Used
 
@@ -42,6 +41,7 @@ restaurant-management-project/
 1. Clone the repository
 
 git clone https://github.com/AshishASuvarna/restaurant-management-project.git
+
 cd restaurant-management-project
 
 2. Install dependencies
