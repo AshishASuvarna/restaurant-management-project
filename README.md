@@ -67,10 +67,6 @@ npm start
 
 Server runs at: http://localhost:3000API endpoint: http://localhost:3000/api/restaurants
 
-📄 License
-
-This project is licensed under the MIT License.
-
 👤 Author
 
 Ashish A Suvarna
