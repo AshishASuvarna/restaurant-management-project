@@ -43,7 +43,22 @@ const queries = {
   getAllOrderItems: 'SELECT * FROM ORDER_ITEM;', 
   /***********/
 
-  
+  /*******************/
+getOrderDetailsByCustomerID: `SELECT 
+  o.ORDER_ID,
+  o.CUSTOMER_ID,
+  o.TOTAL_AMOUNT,
+  o.TAX,
+  o.TIP,
+  oi.ITEM_ID,
+  m.ITEM_NAME,
+  m.PRICE,
+  oi.QUANTITY
+FROM ORDERS o
+JOIN ORDER_ITEM oi ON o.ORDER_ID = oi.ORDER_ID
+JOIN MENU_ITEM m ON oi.ITEM_ID = m.ITEM_ID
+WHERE o.CUSTOMER_ID = ?`,
+  /*******************/
   getTopRestaurantsByOrders: `
     SELECT 
       r.RESTAURANT_ID,
