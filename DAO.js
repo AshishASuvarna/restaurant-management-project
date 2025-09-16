@@ -6,7 +6,7 @@ class AppDAO {
     this.pool = mysql.createPool({
       host: '127.0.0.1',
       user: 'root',
-      password: 'Niramay@2000',
+      password: '***',
       database: 'test',
       port: '3306',
       waitForConnections: true,
